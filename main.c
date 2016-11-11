@@ -7,23 +7,43 @@
 	// 	for(int x = 0; x < MAX; x++)
 	// 		printf("%d", vetor[x])
 	// }
-
 	void bubbleSort(int max, int *vetor){
-		for(int x = max; x > 0; x--){
-			for(int y = 0; y < x-1; y++){
-				if(vetor[y] > vetor[y+1]){
-					int aux = vetor[y+1];
-					vetor[y+1] = vetor[y];
-					vetor[y] = aux;
-				}
-			}
-		}
-
-		for(int x = 0; x < max; x++){
+        int aux;
+        printf("%d\n", max);
+        for(int x = 0; x < max-1; x++){
+        	printf("Teste 1\n");	
+            for(int y = x+1; y < max; y++){
+            	printf("Teste 2\n");
+                if(vetor[x] > vetor[y]){
+                	printf("Teste 3\n");
+                    aux = vetor[x];
+                    vetor[x] = vetor[y];
+                    vetor[y] = aux;
+                }
+            }
+        }
+        printf("Teste\n");
+        for(int x = 0; x < max; x++){
 			printf(" %d ", vetor[x]);
 		}
+    }
 
-	}
+	// void bubbleSort(int max, int *vetor){
+	// 	for(int x = max; x > 0; x--){
+	// 		for(int y = 0; y < x-1; y++){
+	// 			if(vetor[y] > vetor[y+1]){
+	// 				int aux = vetor[y+1];
+	// 				vetor[y+1] = vetor[y];
+	// 				vetor[y] = aux;
+	// 			}
+	// 		}
+	// 	}
+
+	// 	for(int x = 0; x < max; x++){
+	// 		printf(" %d ", vetor[x]);
+	// 	}
+
+	// }
 
 	void selectionSort(int max, int *vetor){
 		for(int x = 0; x < max; x++){
@@ -221,7 +241,7 @@
 
 	void preencherRandom(int max, int *vetor){
 		//srand(time(NULL));
-		srand( (unsigned)time(NULL));
+		srand((unsigned)time(NULL));
 		for(int x = 0; x < max; x++){
 			int b = 1 + (rand() % max);
 			vetor[x] = b;
@@ -232,7 +252,7 @@
 	}
 
 int main(int argc, char const *argv[]){
-	int op, op3, max = 1;
+	int op, op3, max = 1, enviar;
 	int vetor[max];
 	do{
 		printf("------------------------------------------------------\n");
@@ -270,9 +290,11 @@ int main(int argc, char const *argv[]){
 				vetor[max];
 				break;
 		}
+		printf("TAMANHO 1: %d\n", max);
+		enviar = max;
 		preencherRandom(max, vetor);
+		printf("\n");
 		do{
-			printf("TAMANHO: %d\n", max);
 			printf("------------------------------------------------------\n");
 			printf("\tMENU DE OPÇÕES - ESCOLHA DO MÉTODO DE ORDENAÇÃO\n");
 			printf("------------------------------------------------------\n");
@@ -294,7 +316,8 @@ int main(int argc, char const *argv[]){
 					printf("------------------------------------------------------\n");
 					printf("\tBUBBLE SORT\n");
 					printf("------------------------------------------------------\n");
-					bubbleSort(max, vetor);
+					printf("TAMANHO: %d\n", enviar);
+					bubbleSort(enviar, vetor);
 					//menuTipoOrdenacao();
 					printf("\n------------------------------------------------------\n");
 					break;
@@ -302,7 +325,7 @@ int main(int argc, char const *argv[]){
 					printf("------------------------------------------------------\n");
 					printf("\tSELECT SORT\n");
 					printf("------------------------------------------------------\n");
-					selectionSort(max, vetor);
+					selectionSort(enviar, vetor);
 					printf("\n------------------------------------------------------\n");
 					break;
 				case 3:
