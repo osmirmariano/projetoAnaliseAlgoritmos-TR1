@@ -5,13 +5,15 @@
 	/*--------------------FUNÇÃO PRINTAR O RESULTADO DOS MÉTODOS---------------------*/
 	void printar(int max, int *vetor){
 		for(int x = 0; x < max; x++)
-			printf("%d ", vetor[x]);
+			printf(" %d ", vetor[x]);
 	}
 
 	/*---------------------FUNÇÃO ORDENAÇÃO MÉTODO BUBBLE SORT-----------------------*/
 	void bubbleSort(int max, int *vetor){
         int aux;
-        printf("%d\n", max);
+        float tempo;
+        time_t inicio, fim;
+        inicio = time(NULL);
         for(int x = 0; x < max-1; x++){
             for(int y = x+1; y < max; y++){
                 if(vetor[x] > vetor[y]){
@@ -21,11 +23,17 @@
                 }
             }
         }
+        fim = time(NULL);
+        tempo = difftime(fim, inicio);
         printar(max, vetor);
+        printf("\n TEMPO DE EXECUÇÃO: %f", tempo);
     }
 
     /*---------------------FUNÇÃO ORDENAÇÃO MÉTODO SELECTION SORT---------------------*/
 	void selectionSort(int max, int *vetor){
+		float tempo;
+        time_t inicio, fim;
+        inicio = time(NULL);
 		for(int x = 0; x < max; x++){
 			int menor = vetor[x];
 			for(int y = x+1; y < max; y++){
@@ -37,12 +45,18 @@
 			}
 			vetor[x] = menor;
 		}
+		fim = time(NULL);
+		tempo = difftime(fim, inicio);
 		printar(max, vetor);
+		printf("\n TEMPO DE EXECUÇÃO: %f", tempo);
 	};
 
 	/*------------------------FUNÇÃO ORDENAÇÃO MÉTODO SHELL SORT-----------------------*/
 	void shellSort(int max, int *vetor){
 		int k;
+		float tempo;
+        time_t inicio, fim;
+        inicio = time(NULL);
 		if(max%2 == 0)
 			k = max/2;
 		else
@@ -56,11 +70,17 @@
 				}
 			}
 		}
+		fim = time(NULL);
+		tempo = difftime(fim, inicio);
 		printar(max, vetor);
+		printf("\n TEMPO DE EXECUÇÃO: %f", tempo);
 	};
 
 	/*----------------------FUNÇÃO ORDENAÇÃO MÉTODO INSERTION SORT-----------------------*/
 	void insertionSort(int max, int *vetor){
+		float tempo;
+        time_t inicio, fim;
+        inicio = time(NULL);
 		for(int i = 1; i < max; i++){
 			if(vetor[i] < vetor[i-1]){
 				int aux = vetor[i];
@@ -75,17 +95,22 @@
 				vetor[p+1] = aux;
 			}
 		}
+		fim = time(NULL);
+		tempo = difftime(fim, inicio);
 		printar(max, vetor);
+		printf("\n TEMPO DE EXECUÇÃO: %f", tempo);
 	};
 
 	/*-----------------------FUNÇÃO ORDENAÇÃO MÉTODO RADIX SORT-----------------------*/
-	/*void radixSort(int max, int *vetor) {
+	void radixSort(int max, int *vetor) {
 	    int *b;
 	    int maior = vetor[0];
 	    int exp = 1;
 
 	    b = (int *)calloc(max, sizeof(int));
-
+	    float tempo;
+        time_t inicio, fim;
+        inicio = time(NULL);
 	    for(int x = 0; x < max; x++) {
 	    	if(vetor[x] > maior)
 	        	maior = vetor[x];
@@ -104,11 +129,15 @@
 	        exp *= 10;
 	    }
 	    free(b);
-	};*/
+	    fim = time(NULL);
+	    tempo = difftime(fim, inicio);
+		printar(max, vetor);
+		printf("\n TEMPO DE EXECUÇÃO: %f", tempo);
+	};
 
 
 
-	
+
 	/*void quickSort(int inicio, int fim){
 	    int i, j, pivo, metade, aux;
 	    i = inicio;
@@ -137,49 +166,51 @@
 	        quickSort(i,fim);
 	};*/
 
-	// void MergeSort(int inicio, int fim) {
- //        int i, j, k, tam, *aux;
- //        if(inicio == fim)
- //            return;
- //        //ordena recursivamente as duas metades dos vetores
- //        tam = (inicio + fim)/2;
- //        MergeSort(inicio, tam);
- //        MergeSort(tam+1,fim);
- //        //Intercala no vetor auxiliar
- //        i = inicio;
- //        j = tam+1;
- //        k = 0;
- //        aux = new int[fim-inicio+1];
- //        while(i < tam+1 || j  < fim+1){
- //            if(i == tam+1) { // i passou do final da primeira metade, pega v[j]
- //             aux[k] = vetor[j];
- //             j++;
- //             k++;
- //            }else{
- //                if(j==fim+1){ // j passa do final da segunda metade, pega v[i]
- //                    aux[k] = vetor[i];
- //                    i++;
- //                    k++;
- //                }else{
- //                    if(vetor[i] < vetor[j]){
- //                       aux[k] = vetor[i];
- //                       i++;
- //                       k++;
- //                    }else{
- //                      aux[k] = vetor[j];
- //                      j++;
- //                      k++;
- //                    };
- //                };
- //            };
+	void mergeSort(int inicio, int fim, int *vetor, int max){
+        int i, j, k, tam, *aux;
+        if(inicio == fim)
+            return;
+        //ordena recursivamente as duas metades dos vetores
+        tam = (inicio + fim)/2;
+        mergeSort(inicio, tam, vetor, max);
+        mergeSort(tam+1,fim, vetor, max);
+        //Intercala no vetor auxiliar
+        i = inicio;
+        j = tam+1;
+        k = 0;
+        aux = (int *)calloc((fim-inicio+1), sizeof(int));
+        //aux = new int[fim-inicio+1];
+        while(i < tam+1 || j  < fim+1){
+            if(i == tam+1) { // i passou do final da primeira metade, pega v[j]
+             aux[k] = vetor[j];
+             j++;
+             k++;
+            }else{
+                if(j==fim+1){ // j passa do final da segunda metade, pega v[i]
+                    aux[k] = vetor[i];
+                    i++;
+                    k++;
+                }else{
+                    if(vetor[i] < vetor[j]){
+                       aux[k] = vetor[i];
+                       i++;
+                       k++;
+                    }else{
+                      aux[k] = vetor[j];
+                      j++;
+                      k++;
+                    };
+                };
+            };
 
- //        };
- //        // copia o vetor intercalado para original
- //        for(i = inicio; i <= fim; i++) {
- //          vetor[i] = aux[i-inicio];
- //        };
- //        delete(aux);
- //    };
+        };
+        // copia o vetor intercalado para original
+        for(i = inicio; i <= fim; i++) {
+          vetor[i] = aux[i-inicio];
+        };
+        free(aux);
+        printar(max, vetor);
+    };
 
 	
 
@@ -232,9 +263,9 @@
 			int b = 1 + (rand() % max);
 			vetor[x] = b;
 		}
-		for(int x = 0; x < max; x++){
+		/*for(int x = 0; x < max; x++){
 			printf(" %d ", vetor[x]);
-		}
+		}*/
 	}
 
 int main(int argc, char const *argv[]){
@@ -259,28 +290,32 @@ int main(int argc, char const *argv[]){
 		switch(op3){
 			case 1:
 				max = 10;
-				vetor[max];
+				vetor = (int*) malloc(max*sizeof(int));
 				break;
 			case 2:
 				max = 100;
-				vetor[max];
+				vetor = (int*) malloc(max*sizeof(int));
 				break;
 			case 3:
 				max = 1000;
-				vetor[max];
+				vetor = (int*) malloc(max*sizeof(int));
 				break;
 			case 4:
 				max = 50000;
-				vetor[max];
+				vetor = (int*) malloc(max*sizeof(int));
 				break;
 			case 5:
 				max = 100000;
-				vetor[max];
+				vetor = (int*) malloc(max*sizeof(int));				
 				break;
+			case 0:
+				printf("PROGRAMA ENCERRADO COM SUCESSO\n");
+				exit(0);
+				break;
+			default:
+				printf("OPÇÃO INVÁLIDA, POR FAVOR ESCOLHA UMA VÁLIDA\n");
 		}
-		printf("TAMANHO 1: %d\n", max);
 		preencherRandom(max, vetor);
-		printf("\n");
 		do{
 			printf("------------------------------------------------------\n");
 			printf("\tMENU DE OPÇÕES - ESCOLHA DO MÉTODO DE ORDENAÇÃO\n");
@@ -303,9 +338,7 @@ int main(int argc, char const *argv[]){
 					printf("------------------------------------------------------\n");
 					printf("\tBUBBLE SORT\n");
 					printf("------------------------------------------------------\n");
-					printf("TAMANHO: %d\n", max);
 					bubbleSort(max, vetor);
-					//menuTipoOrdenacao();
 					printf("\n------------------------------------------------------\n");
 					break;
 				case 2:
@@ -327,27 +360,30 @@ int main(int argc, char const *argv[]){
 					printf("\tINSERTION SORT\n");
 					printf("------------------------------------------------------\n");
 					insertionSort(max, vetor);
-					printf("------------------------------------------------------\n");
+					printf("\n------------------------------------------------------\n");
 					break;
 				case 5:
 					printf("------------------------------------------------------\n");
 					printf("\tQUICK SORT\n");
-					printf("------------------------------------------------------\n");
+					printf("\n------------------------------------------------------\n");
 					break;
 				case 6:
 					printf("------------------------------------------------------\n");
 					printf("\tMERGE SORT\n");
-					printf("------------------------------------------------------\n");
+					printf("\n------------------------------------------------------\n");
+					mergeSort(0, max-1, vetor, max);
+					printf("\n------------------------------------------------------\n");
+
 					break;
 				case 7:
 					printf("------------------------------------------------------\n");
 					printf("\tRADIX SORT\n");
 					printf("------------------------------------------------------\n");
-					//radixSort(max, vetor);
-					printf("------------------------------------------------------\n");
+					radixSort(max, vetor);
+					printf("\n-----------------------------------------------------\n");
 					break;
 				case 0:
-					printf("PROGRAMA ENCERRADO COM SUCESSO\n");
+					printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
 					break;
 				default:
 					printf("OPÇÃO INVÁLIDA, POR FAVOR ESCOLHA UMA VÁLIDA\n");
