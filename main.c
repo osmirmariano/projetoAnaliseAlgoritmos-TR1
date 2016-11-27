@@ -10,13 +10,14 @@
 
 	/*---------------------FUNÇÃO ORDENAÇÃO MÉTODO BUBBLE SORT-----------------------*/
 	void bubbleSort(int max, int *vetor){
-        int aux;
+        int aux, cont = 0;
         float tempo;
         time_t inicio, fim;
         inicio = time(NULL);
         for(int x = 0; x < max-1; x++){
             for(int y = x+1; y < max; y++){
                 if(vetor[x] > vetor[y]){
+                	cont++;
                     aux = vetor[x];
                     vetor[x] = vetor[y];
                     vetor[y] = aux;
@@ -27,10 +28,12 @@
         tempo = difftime(fim, inicio);
         printar(max, vetor);
         printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
+        printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
     }
 
     /*---------------------FUNÇÃO ORDENAÇÃO MÉTODO SELECTION SORT---------------------*/
 	void selectionSort(int max, int *vetor){
+		int cont = 0;
 		float tempo;
         time_t inicio, fim;
         inicio = time(NULL);
@@ -38,6 +41,7 @@
 			int menor = vetor[x];
 			for(int y = x+1; y < max; y++){
 				if(vetor[y] < menor){
+					cont++;
 					int aux = menor;
 					menor = vetor[y];
 					vetor[y] = aux;
@@ -49,11 +53,12 @@
 		tempo = difftime(fim, inicio);
 		printar(max, vetor);
 		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
+		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
 	};
 
 	/*------------------------FUNÇÃO ORDENAÇÃO MÉTODO SHELL SORT-----------------------*/
 	void shellSort(int max, int *vetor){
-		int k;
+		int k, cont = 0;
 		float tempo;
         time_t inicio, fim;
         inicio = time(NULL);
@@ -64,6 +69,7 @@
 		for(; k > 0; k--){
 			for(int i = 0; i+k < max; i++){
 				if(vetor[i] > vetor[i+k]){
+					cont++;
 					int aux = vetor[i];
 					vetor[i] = vetor[i+k];
 					vetor[i+k] = aux;
@@ -74,15 +80,18 @@
 		tempo = difftime(fim, inicio);
 		printar(max, vetor);
 		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
+		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
 	};
 
 	/*----------------------FUNÇÃO ORDENAÇÃO MÉTODO INSERTION SORT-----------------------*/
 	void insertionSort(int max, int *vetor){
+		int cont = 0;
 		float tempo;
         time_t inicio, fim;
         inicio = time(NULL);
 		for(int i = 1; i < max; i++){
 			if(vetor[i] < vetor[i-1]){
+				cont++;
 				int aux = vetor[i];
 				int p;
 				for(p = i-1; p >= 0; p--){
@@ -99,6 +108,7 @@
 		tempo = difftime(fim, inicio);
 		printar(max, vetor);
 		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
+		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
 	};
 
 	/*-----------------------FUNÇÃO ORDENAÇÃO MÉTODO RADIX SORT-----------------------*/
