@@ -240,13 +240,67 @@
 		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 	}
 
-	void preencherRandom(int max, int *vetor){
-		//srand(time(NULL));
+	void preencherRandom2(int max, int *vetor){
+		float tempo;
+        time_t inicial, final;
+        inicial = time(NULL);
 		srand((unsigned)time(NULL));
 		for(int x = 0; x < max; x++){
 			int b = 1 + (rand() % max);
 			vetor[x] = b;
 		}
+		final = time(NULL);
+	    tempo = difftime(final, inicial);
+		printar(max, vetor);
+		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
+	}
+
+	void preencherRandom(int max, int *vetor){
+		srand((unsigned)time(NULL));
+		for(int x = 0; x < max; x++){
+			int b = 1 + (rand() % max);
+			vetor[x] = b;
+		}
+	}
+
+	void menuTipoOrdenacao(int max, int *vetor){
+		int op2;
+		do{
+			printf("------------------------------------------------------\n");
+			printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+			printf("------------------------------------------------------\n");
+			printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+			printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+			printf(" 3 --  DESORDENADO\n");
+			printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+			printf("------------------------------------------------------\n");
+			printf("OPÇÃO: ");
+			scanf("%d", &op2);
+			
+			switch(op2){
+				case 1:
+					printf("------------------------------------------------------\n");
+					printf("\tORDENAÇÃO CRESCENTE\n");
+					printf("------------------------------------------------------\n");
+					
+					break;
+				case 2:
+					printf("------------------------------------------------------\n");
+					printf("\tORDENAÇÃO DECRESCENTE\n");
+					printf("------------------------------------------------------\n");
+					//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+					break;
+				case 3:
+					printf("------------------------------------------------------\n");
+					printf("\tDESORDENADO");
+					printf("------------------------------------------------------\n");
+					//CHAMAR FUNÇÃO DESORDENADO
+					break;
+				default:
+					printf("OPÇÃO INVÁLIDA\n");
+			}
+
+		}while(op2 != 0);
 	}
 
 int main(int argc, char const *argv[]){
@@ -319,51 +373,317 @@ int main(int argc, char const *argv[]){
 					printf("------------------------------------------------------\n");
 					printf("\tBUBBLE SORT\n");
 					printf("------------------------------------------------------\n");
-					bubbleSort(max, vetor);
-					printf("\n------------------------------------------------------\n");
+					int op2;
+					do{
+						printf("------------------------------------------------------\n");
+						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("------------------------------------------------------\n");
+						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+						printf(" 3 --  DESORDENADO\n");
+						printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+						printf("------------------------------------------------------\n");
+						printf("OPÇÃO: ");
+						scanf("%d", &op2);
+						
+						switch(op2){
+							case 1:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO CRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								bubbleSort(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 2:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO DECRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								break;
+							case 3:
+								printf("------------------------------------------------------\n");
+								printf("\tDESORDENADO\n");
+								printf("------------------------------------------------------\n");
+								preencherRandom2(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 0:
+								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+							default:
+								printf("OPÇÃO INVÁLIDA\n");
+						}
+
+					}while(op2 != 0);
 					break;
 				case 2:
 					printf("------------------------------------------------------\n");
 					printf("\tSELECT SORT\n");
 					printf("------------------------------------------------------\n");
-					selectionSort(max, vetor);
-					printf("\n------------------------------------------------------\n");
+					do{
+						printf("------------------------------------------------------\n");
+						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("------------------------------------------------------\n");
+						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+						printf(" 3 --  DESORDENADO\n");
+						printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+						printf("------------------------------------------------------\n");
+						printf("OPÇÃO: ");
+						scanf("%d", &op2);
+						
+						switch(op2){
+							case 1:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO CRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								selectionSort(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 2:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO DECRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								break;
+							case 3:
+								printf("------------------------------------------------------\n");
+								printf("\tDESORDENADO\n");
+								printf("------------------------------------------------------\n");
+								preencherRandom2(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 0:
+								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+							default:
+								printf("OPÇÃO INVÁLIDA\n");
+						}
+
+					}while(op2 != 0);
 					break;
 				case 3:
 					printf("------------------------------------------------------\n");
 					printf("\tSHELL SORT\n");
 					printf("------------------------------------------------------\n");
-					shellSort(max, vetor);
-					printf("\n------------------------------------------------------\n");
+					do{
+						printf("------------------------------------------------------\n");
+						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("------------------------------------------------------\n");
+						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+						printf(" 3 --  DESORDENADO\n");
+						printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+						printf("------------------------------------------------------\n");
+						printf("OPÇÃO: ");
+						scanf("%d", &op2);
+						
+						switch(op2){
+							case 1:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO CRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								shellSort(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 2:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO DECRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								break;
+							case 3:
+								printf("------------------------------------------------------\n");
+								printf("\tDESORDENADO\n");
+								printf("------------------------------------------------------\n");
+								preencherRandom2(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 0:
+								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+							default:
+								printf("OPÇÃO INVÁLIDA\n");
+						}
+
+					}while(op2 != 0);
 					break;
 				case 4:
 					printf("------------------------------------------------------\n");
 					printf("\tINSERTION SORT\n");
 					printf("------------------------------------------------------\n");
-					insertionSort(max, vetor);
-					printf("\n------------------------------------------------------\n");
+					do{
+						printf("------------------------------------------------------\n");
+						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("------------------------------------------------------\n");
+						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+						printf(" 3 --  DESORDENADO\n");
+						printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+						printf("------------------------------------------------------\n");
+						printf("OPÇÃO: ");
+						scanf("%d", &op2);
+						
+						switch(op2){
+							case 1:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO CRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								insertionSort(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 2:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO DECRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								break;
+							case 3:
+								printf("------------------------------------------------------\n");
+								printf("\tDESORDENADO\n");
+								printf("------------------------------------------------------\n");
+								preencherRandom2(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 0:
+								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+							default:
+								printf("OPÇÃO INVÁLIDA\n");
+						}
+
+					}while(op2 != 0);
 					break;
 				case 5:
 					printf("------------------------------------------------------\n");
 					printf("\tQUICK SORT\n");
 					printf("\n------------------------------------------------------\n");
-					printarQuickSort(0, max-1, vetor);
-					printf("\n------------------------------------------------------\n");
+					do{
+						printf("------------------------------------------------------\n");
+						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("------------------------------------------------------\n");
+						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+						printf(" 3 --  DESORDENADO\n");
+						printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+						printf("------------------------------------------------------\n");
+						printf("OPÇÃO: ");
+						scanf("%d", &op2);
+						
+						switch(op2){
+							case 1:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO CRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								printarQuickSort(0, max-1, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 2:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO DECRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								break;
+							case 3:
+								printf("------------------------------------------------------\n");
+								printf("\tDESORDENADO\n");
+								printf("------------------------------------------------------\n");
+								preencherRandom2(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 0:
+								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+							default:
+								printf("OPÇÃO INVÁLIDA\n");
+						}
+
+					}while(op2 != 0);
 					break;
 				case 6:
 					printf("------------------------------------------------------\n");
 					printf("\tMERGE SORT\n");
 					printf("\n------------------------------------------------------\n");
-					printarMergeSort(0, max-1, vetor);
-					printf("\n------------------------------------------------------\n");
+					do{
+						printf("------------------------------------------------------\n");
+						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("------------------------------------------------------\n");
+						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+						printf(" 3 --  DESORDENADO\n");
+						printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+						printf("------------------------------------------------------\n");
+						printf("OPÇÃO: ");
+						scanf("%d", &op2);
+						
+						switch(op2){
+							case 1:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO CRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								printarMergeSort(0, max-1, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 2:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO DECRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								break;
+							case 3:
+								printf("------------------------------------------------------\n");
+								printf("\tDESORDENADO\n");
+								printf("------------------------------------------------------\n");
+								preencherRandom2(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 0:
+								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+							default:
+								printf("OPÇÃO INVÁLIDA\n");
+						}
 
+					}while(op2 != 0);
 					break;
 				case 7:
 					printf("------------------------------------------------------\n");
 					printf("\tRADIX SORT\n");
 					printf("------------------------------------------------------\n");
-					radixSort(max, vetor);
-					printf("\n-----------------------------------------------------\n");
+					do{
+						printf("------------------------------------------------------\n");
+						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("------------------------------------------------------\n");
+						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
+						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
+						printf(" 3 --  DESORDENADO\n");
+						printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
+						printf("------------------------------------------------------\n");
+						printf("OPÇÃO: ");
+						scanf("%d", &op2);
+						
+						switch(op2){
+							case 1:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO CRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								radixSort(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 2:
+								printf("------------------------------------------------------\n");
+								printf("\tORDENAÇÃO DECRESCENTE\n");
+								printf("------------------------------------------------------\n");
+								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								break;
+							case 3:
+								printf("------------------------------------------------------\n");
+								printf("\tDESORDENADO\n");
+								printf("------------------------------------------------------\n");
+								preencherRandom2(max, vetor);
+								printf("\n------------------------------------------------------\n");
+								break;
+							case 0:
+								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+							default:
+								printf("OPÇÃO INVÁLIDA\n");
+						}
+
+					}while(op2 != 0);
 					break;
 				case 0:
 					printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
@@ -375,8 +695,6 @@ int main(int argc, char const *argv[]){
 		}while(op != 0);
 	}while(op3 != 0);
 
-	
-
 	return 0;
 }
 
@@ -384,43 +702,3 @@ int main(int argc, char const *argv[]){
 
 
 
-void menuTipoOrdenacao(){
-		int op2;
-
-		do{
-			printf("------------------------------------------------------\n");
-			printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
-			printf("------------------------------------------------------\n");
-			printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
-			printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
-			printf(" 3 --  DESORDENADO\n");
-			printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
-			printf("------------------------------------------------------\n");
-			printf("OPÇÃO: ");
-			scanf("%d", &op2);
-			
-			switch(op2){
-				case 1:
-					printf("------------------------------------------------------\n");
-					printf("\tORDENAÇÃO CRESCENTE\n");
-					printf("------------------------------------------------------\n");
-					//CHAMAR FUNÇÃO ORDENAÇÃO CRESCENTE
-					break;
-				case 2:
-					printf("------------------------------------------------------\n");
-					printf("\tORDENAÇÃO DECRESCENTE\n");
-					printf("------------------------------------------------------\n");
-					//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
-					break;
-				case 3:
-					printf("------------------------------------------------------\n");
-					printf("\tDESORDENADO");
-					printf("------------------------------------------------------\n");
-					//CHAMAR FUNÇÃO DESORDENADO
-					break;
-				default:
-					printf("OPÇÃO INVÁLIDA\n");
-			}
-
-		}while(op2 != 0);
-	}
