@@ -11,9 +11,6 @@
 	/*---------------------FUNÇÃO ORDENAÇÃO MÉTODO BUBBLE SORT-----------------------*/
 	void bubbleSort(int max, int *vetor){
         int aux, cont = 0;
-        float tempo;
-        time_t inicio, fim;
-        inicio = time(NULL);
         for(int x = 0; x < max-1; x++){
             for(int y = x+1; y < max; y++){
                 if(vetor[x] > vetor[y]){
@@ -24,19 +21,29 @@
                 }
             }
         }
-        fim = time(NULL);
-        tempo = difftime(fim, inicio);
+        
         printar(max, vetor);
-        printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
         printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
     }
 
+    void bubbleSortDecrescente(int max, int *vetor){
+        int aux, cont = 0;
+        for(int x = 0; x < max-1; x++){
+            for(int y = x+1; y < max; y++){
+                if(vetor[x] < vetor[y]){
+                	cont++;
+                    aux = vetor[x];
+                    vetor[x] = vetor[y];
+                    vetor[y] = aux;
+                }
+            }
+        }
+        printar(max, vetor);
+        printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
+    }
     /*---------------------FUNÇÃO ORDENAÇÃO MÉTODO SELECTION SORT---------------------*/
 	void selectionSort(int max, int *vetor){
 		int cont = 0;
-		float tempo;
-        time_t inicio, fim;
-        inicio = time(NULL);
 		for(int x = 0; x < max; x++){
 			int menor = vetor[x];
 			for(int y = x+1; y < max; y++){
@@ -49,19 +56,30 @@
 			}
 			vetor[x] = menor;
 		}
-		fim = time(NULL);
-		tempo = difftime(fim, inicio);
 		printar(max, vetor);
-		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
 	};
 
+	void selectionSortDecrescente(int max, int *vetor){
+		int cont = 0;
+		for(int x = 0; x < max; x++){
+			int menor = vetor[x];
+			for(int y = x+1; y < max; y++){
+				if(vetor[y] > menor){
+					cont++;
+					int aux = menor;
+					menor = vetor[y];
+					vetor[y] = aux;
+				}
+			}
+			vetor[x] = menor;
+		}
+		printar(max, vetor);
+		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
+	};
 	/*------------------------FUNÇÃO ORDENAÇÃO MÉTODO SHELL SORT-----------------------*/
 	void shellSort(int max, int *vetor){
 		int k, cont = 0;
-		float tempo;
-        time_t inicio, fim;
-        inicio = time(NULL);
 		if(max%2 == 0)
 			k = max/2;
 		else
@@ -76,19 +94,33 @@
 				}
 			}
 		}
-		fim = time(NULL);
-		tempo = difftime(fim, inicio);
 		printar(max, vetor);
-		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
+		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
+	};
+
+	void shellSortDecrescente(int max, int *vetor){
+		int k, cont = 0;
+		if(max%2 == 0)
+			k = max/2;
+		else
+			k = (max/2)+1;
+		for(; k > 0; k--){
+			for(int i = 0; i+k < max; i++){
+				if(vetor[i] < vetor[i+k]){
+					cont++;
+					int aux = vetor[i];
+					vetor[i] = vetor[i+k];
+					vetor[i+k] = aux;
+				}
+			}
+		}
+		printar(max, vetor);
 		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
 	};
 
 	/*----------------------FUNÇÃO ORDENAÇÃO MÉTODO INSERTION SORT-----------------------*/
 	void insertionSort(int max, int *vetor){
 		int cont = 0;
-		float tempo;
-        time_t inicio, fim;
-        inicio = time(NULL);
 		for(int i = 1; i < max; i++){
 			if(vetor[i] < vetor[i-1]){
 				cont++;
@@ -104,13 +136,31 @@
 				vetor[p+1] = aux;
 			}
 		}
-		fim = time(NULL);
-		tempo = difftime(fim, inicio);
 		printar(max, vetor);
-		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
 	};
 
+
+	void insertionSortDecrescente(int max, int *vetor){
+		int cont = 0;
+		for(int i = 1; i < max; i++){
+			if(vetor[i] > vetor[i-1]){
+				cont++;
+				int aux = vetor[i];
+				int p;
+				for(p = i-1; p >= 0; p--){
+					if(aux < vetor[p])
+						break;
+				}
+				for(int j = i; j > (p+1); j--){
+					vetor[j] = vetor[j-1];
+				}
+				vetor[p+1] = aux;
+			}
+		}
+		printar(max, vetor);
+		printf("\n\n NUMERO DE COMPARAÇÕES: %d", cont);
+	};
 	/*-----------------------FUNÇÃO ORDENAÇÃO MÉTODO RADIX SORT-----------------------*/
 	void radixSort(int max, int *vetor) {
 	    int *b;
@@ -118,9 +168,6 @@
 	    int exp = 1;
 
 	    b = (int*)calloc(max, sizeof(int));
-	    float tempo;
-        time_t inicio, fim;
-        inicio = time(NULL);
 	    for(int x = 0; x < max; x++) {
 	    	if(vetor[x] > maior)
 	        	maior = vetor[x];
@@ -138,12 +185,11 @@
 	        exp *= 10;
 	    }
 	    free(b);
-	    fim = time(NULL);
-	    tempo = difftime(fim, inicio);
 		printar(max, vetor);
-		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 	};
 
+	
+	/*-----------------------FUNÇÃO ORDENAÇÃO MÉTODO QUICK SORT-----------------------*/
 	int *quickSort(int inicio, int fim, int *vetor){
 	    int i, j, pivo, metade, aux;
 	    i = inicio;
@@ -175,15 +221,9 @@
 	void printarQuickSort(int inicio, int fim, int *vetor){
 		int *novoVetor;
 		int max = fim+1;
-		float tempo;
-        time_t inicial, final;
-        inicial = time(NULL);
 
 		novoVetor = quickSort(inicio, fim, vetor);
-		final = time(NULL);
-	    tempo = difftime(final, inicial);
 		printar(max, novoVetor);
-		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 	}
 
 	int *mergeSort(int inicio, int fim, int *vetor){
@@ -239,30 +279,18 @@
     void printarMergeSort(int inicio, int fim, int *vetor){
 		int *novoVetor;
 		int max = fim+1;
-		float tempo;
-        time_t inicial, final;
-        inicial = time(NULL);
 
 		novoVetor = mergeSort(inicio, fim, vetor);
-		final = time(NULL);
-	    tempo = difftime(final, inicial);
 		printar(max, novoVetor);
-		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 	}
 
 	void preencherRandom2(int max, int *vetor){
-		float tempo;
-        time_t inicial, final;
-        inicial = time(NULL);
 		srand((unsigned)time(NULL));
 		for(int x = 0; x < max; x++){
 			int b = 1 + (rand() % max);
 			vetor[x] = b;
 		}
-		final = time(NULL);
-	    tempo = difftime(final, inicial);
 		printar(max, vetor);
-		printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 	}
 
 	void preencherRandom(int max, int *vetor){
@@ -273,50 +301,12 @@
 		}
 	}
 
-	void menuTipoOrdenacao(int max, int *vetor){
-		int op2;
-		do{
-			printf("------------------------------------------------------\n");
-			printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
-			printf("------------------------------------------------------\n");
-			printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
-			printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
-			printf(" 3 --  DESORDENADO\n");
-			printf(" 0 --  VOLTAR MENU PRINCIPAL\n");
-			printf("------------------------------------------------------\n");
-			printf("OPÇÃO: ");
-			scanf("%d", &op2);
-			
-			switch(op2){
-				case 1:
-					printf("------------------------------------------------------\n");
-					printf("\tORDENAÇÃO CRESCENTE\n");
-					printf("------------------------------------------------------\n");
-					
-					break;
-				case 2:
-					printf("------------------------------------------------------\n");
-					printf("\tORDENAÇÃO DECRESCENTE\n");
-					printf("------------------------------------------------------\n");
-					//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
-					break;
-				case 3:
-					printf("------------------------------------------------------\n");
-					printf("\tDESORDENADO");
-					printf("------------------------------------------------------\n");
-					//CHAMAR FUNÇÃO DESORDENADO
-					break;
-				default:
-					printf("OPÇÃO INVÁLIDA\n");
-			}
-
-		}while(op2 != 0);
-	}
-
 int main(int argc, char const *argv[]){
 	int op, op3;
 	int max, *vetor;
-
+	float tempo;
+    time_t inicio, fim;
+    
 	do{
 		printf("------------------------------------------------------\n");
 		printf("\tESCOLHA O TAMANHO DO VETOR\n");
@@ -401,24 +391,38 @@ int main(int argc, char const *argv[]){
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO CRESCENTE\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								bubbleSort(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 2:
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO DECRESCENTE\n");
 								printf("------------------------------------------------------\n");
-								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								inicio = time(NULL);
+								bubbleSortDecrescente(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
+								printf("\n------------------------------------------------------\n");
 								break;
 							case 3:
 								printf("------------------------------------------------------\n");
 								printf("\tDESORDENADO\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								preencherRandom2(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
@@ -446,24 +450,38 @@ int main(int argc, char const *argv[]){
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO CRESCENTE\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								selectionSort(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 2:
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO DECRESCENTE\n");
 								printf("------------------------------------------------------\n");
-								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								inicio = time(NULL);
+								selectionSortDecrescente(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
+								printf("\n------------------------------------------------------\n");
 								break;
 							case 3:
 								printf("------------------------------------------------------\n");
 								printf("\tDESORDENADO\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								preencherRandom2(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
@@ -491,24 +509,38 @@ int main(int argc, char const *argv[]){
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO CRESCENTE\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								shellSort(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 2:
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO DECRESCENTE\n");
 								printf("------------------------------------------------------\n");
-								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								inicio = time(NULL);
+								shellSortDecrescente(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
+								printf("\n------------------------------------------------------\n");
 								break;
 							case 3:
 								printf("------------------------------------------------------\n");
 								printf("\tDESORDENADO\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								preencherRandom2(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
@@ -536,24 +568,34 @@ int main(int argc, char const *argv[]){
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO CRESCENTE\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								insertionSort(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 2:
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO DECRESCENTE\n");
 								printf("------------------------------------------------------\n");
-								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								
+								printf("\n------------------------------------------------------\n");
 								break;
 							case 3:
 								printf("------------------------------------------------------\n");
 								printf("\tDESORDENADO\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								preencherRandom2(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
@@ -581,24 +623,34 @@ int main(int argc, char const *argv[]){
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO CRESCENTE\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								printarQuickSort(0, max-1, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 2:
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO DECRESCENTE\n");
 								printf("------------------------------------------------------\n");
-								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								
+								printf("\n------------------------------------------------------\n");
 								break;
 							case 3:
 								printf("------------------------------------------------------\n");
 								printf("\tDESORDENADO\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								preencherRandom2(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
@@ -626,24 +678,34 @@ int main(int argc, char const *argv[]){
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO CRESCENTE\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								printarMergeSort(0, max-1, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 2:
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO DECRESCENTE\n");
 								printf("------------------------------------------------------\n");
-								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								
+								printf("\n------------------------------------------------------\n");
 								break;
 							case 3:
 								printf("------------------------------------------------------\n");
 								printf("\tDESORDENADO\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								preencherRandom2(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
@@ -671,24 +733,34 @@ int main(int argc, char const *argv[]){
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO CRESCENTE\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								radixSort(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 2:
 								printf("------------------------------------------------------\n");
 								printf("\tORDENAÇÃO DECRESCENTE\n");
 								printf("------------------------------------------------------\n");
-								//CHAMAR FUNÇÃO ORDENAÇÃO DECRESCENTE
+								
+								printf("\n------------------------------------------------------\n");
 								break;
 							case 3:
 								printf("------------------------------------------------------\n");
 								printf("\tDESORDENADO\n");
 								printf("------------------------------------------------------\n");
+								inicio = time(NULL);
 								preencherRandom2(max, vetor);
+								fim = time(NULL);
+        						tempo = difftime(fim, inicio);
+        						printf("\n\n TEMPO DE EXECUÇÃO: %f s", tempo);
 								printf("\n------------------------------------------------------\n");
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
@@ -707,8 +779,3 @@ int main(int argc, char const *argv[]){
 
 	return 0;
 }
-
-
-
-
-
