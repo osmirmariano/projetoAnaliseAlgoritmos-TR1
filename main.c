@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 	
 	/*--------------------FUNÇÃO PRINTAR O RESULTADO DOS MÉTODOS---------------------*/
 	void printar(int max, int *vetor){
@@ -331,8 +332,8 @@ int main(int argc, char const *argv[]){
     time_t inicio, fim;
     
 	do{
-		printf("------------------------------------------------------\n");
-		printf("\tESCOLHA O TAMANHO DO VETOR\n");
+		printf("\n\n------------------------------------------------------\n");
+		printf("\tMENU - ESCOLHA O TAMANHO DO VETOR\n");
 		printf("------------------------------------------------------\n");
 		printf(" 1 --  10\n");
 		printf(" 2 --  100\n");
@@ -366,7 +367,7 @@ int main(int argc, char const *argv[]){
 				vetor = (int*) malloc(max*sizeof(int));				
 				break;
 			case 0:
-				printf("PROGRAMA ENCERRADO COM SUCESSO\n");
+				printf("\n \tPROGRAMA ENCERRADO COM SUCESSO!\n\n");
 				exit(0);
 				break;
 			default:
@@ -376,8 +377,8 @@ int main(int argc, char const *argv[]){
 		preencherRandom(max, vetor);
 
 		do{
-			printf("------------------------------------------------------\n");
-			printf("\tMENU DE OPÇÕES - ESCOLHA DO MÉTODO DE ORDENAÇÃO\n");
+			printf("\n\n------------------------------------------------------\n");
+			printf("\tMENU - ESCOLHA O MÉTODO DE ORDENAÇÃO\n");
 			printf("------------------------------------------------------\n");
 			printf(" 1 --  BUBBLE SORT\n");
 			printf(" 2 --  SELECT SORT\n");
@@ -394,13 +395,13 @@ int main(int argc, char const *argv[]){
 			printf("\e[H\e[2J");
 			switch(op){
 				case 1:
-					printf("------------------------------------------------------\n");
+					printf("\n\n------------------------------------------------------\n");
 					printf("\tBUBBLE SORT\n");
 					printf("------------------------------------------------------\n");
 					int op2;
 					do{
 						printf("------------------------------------------------------\n");
-						printf("\tMENU DE OPÇÕES - ESCOLHA DO TIPO DE ORDENAÇÃO\n");
+						printf("\tMENU - ESCOLHA A ORDEM\n");
 						printf("------------------------------------------------------\n");
 						printf(" 1 --  ORDENAÇÃO CRESCENTE\n");
 						printf(" 2 --  ORDENAÇÃO DECRESCENTE\n");
@@ -446,16 +447,16 @@ int main(int argc, char const *argv[]){
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								printf("\e[H\e[2J");
 								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
-						printf("\e[H\e[2J");
 
 					}while(op2 != 0);
 					break;
 				case 2:
-					printf("------------------------------------------------------\n");
+					printf("\n\n------------------------------------------------------\n");
 					printf("\tSELECT SORT\n");
 					printf("------------------------------------------------------\n");
 					do{
@@ -506,16 +507,16 @@ int main(int argc, char const *argv[]){
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								printf("\e[H\e[2J");
 								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
-						printf("\e[H\e[2J");
 
 					}while(op2 != 0);
 					break;
 				case 3:
-					printf("------------------------------------------------------\n");
+					printf("\n\n------------------------------------------------------\n");
 					printf("\tSHELL SORT\n");
 					printf("------------------------------------------------------\n");
 					do{
@@ -566,16 +567,16 @@ int main(int argc, char const *argv[]){
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								printf("\e[H\e[2J");
 								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
-						printf("\e[H\e[2J");
 
 					}while(op2 != 0);
 					break;
 				case 4:
-					printf("------------------------------------------------------\n");
+					printf("\n\n------------------------------------------------------\n");
 					printf("\tINSERTION SORT\n");
 					printf("------------------------------------------------------\n");
 					do{
@@ -626,16 +627,16 @@ int main(int argc, char const *argv[]){
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								printf("\e[H\e[2J");
 								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
-						printf("\e[H\e[2J");
 
 					}while(op2 != 0);
 					break;
 				case 5:
-					printf("------------------------------------------------------\n");
+					printf("\n\n------------------------------------------------------\n");
 					printf("\tQUICK SORT\n");
 					printf("\n------------------------------------------------------\n");
 					do{
@@ -682,16 +683,16 @@ int main(int argc, char const *argv[]){
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								printf("\e[H\e[2J");
 								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
-						printf("\e[H\e[2J");
 
 					}while(op2 != 0);
 					break;
 				case 6:
-					printf("------------------------------------------------------\n");
+					printf("\n\n------------------------------------------------------\n");
 					printf("\tMERGE SORT\n");
 					printf("\n------------------------------------------------------\n");
 					do{
@@ -738,16 +739,16 @@ int main(int argc, char const *argv[]){
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								printf("\e[H\e[2J");
 								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
-						printf("\e[H\e[2J");
 
 					}while(op2 != 0);
 					break;
 				case 7:
-					printf("------------------------------------------------------\n");
+					printf("\n\n------------------------------------------------------\n");
 					printf("\tRADIX SORT\n");
 					printf("------------------------------------------------------\n");
 					do{
@@ -794,16 +795,15 @@ int main(int argc, char const *argv[]){
 								break;
 							case 0:
 								printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+								printf("\e[H\e[2J");
 								break;
 							default:
 								printf("OPÇÃO INVÁLIDA\n");
 						}
-						printf("\e[H\e[2J");
-
 					}while(op2 != 0);
 					break;
 				case 0:
-					printf("\tVOLTANDO PARA O MENU PRINCIPAL\n");
+					
 					break;
 				default:
 					printf("OPÇÃO INVÁLIDA, POR FAVOR ESCOLHA UMA VÁLIDA\n");
